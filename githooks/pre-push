@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# If the following text is found anywhere in the source for HEAD, we will prevent pushing
+dont_push_flag=`git branch | awk '/^\*/{print $2}'`
+
+if [ "develop" = "$dont_push_flag" ] || [ "master" = "$dont_push_flag" ]
+then
+    echo "Don't push master or develop"
+    exit 1
+fi 
+
+exit 0
